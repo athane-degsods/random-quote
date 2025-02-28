@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 
@@ -50,20 +52,28 @@ class WebComponent extends React.Component {
 
   render() {
     return(
-      <div>
-        <h1>Hello</h1>
-        <div className="container" id="quote-box">
-          <div className="quote" id="text">{this.state.quote}</div>
-          <div className="author" id="author">{this.state.author}</div>
-          <div className="buttons">
-          <a href={this.getXPostUrl()}><button id="tweet-quote" target="top">Twitter</button></a>
-          <button id="tumblr">Tumblr</button>
-          <button id="new-quote" onClick={this.handleClick} >New Quote</button>
-          </div>
-          <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+      <div className="container-fluid d-flex justify-content-center align-items-center vh-100">
+        <div className="card p-4 shadow-lg"  id="quote-box">
+        <h1 className="text-center">Hello</h1>
+          <blockquote  className="container" >
+            <p className="mb-3" id="text">{this.state.quote}</p>
+            <footer className="blockquote-footer"  id="author">{this.state.author}</footer>
+          </blockquote >
+            <div className="buttons">
+            <a href={this.getXPostUrl()} target="_blank"><button id="tweet-quote" className="btn btn-primary">Twitter</button></a>
+            <a 
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://github.com/athane-degsods/random-quote.git")}&quote=${encodeURIComponent(this.state.quote + " - " + this.state.author)}`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+            <button id="facebook" className="btn btn-primary">Facebook</button>
+            </a>
+            <button id="new-quote" className="btn btn-primary" onClick={this.handleClick} >New Quote</button>
+            </div>
         </div>
-</div>
-          );
+      <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+      </div>
+    );
   }
 }
 
